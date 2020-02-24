@@ -1,0 +1,153 @@
+<script>
+  // const student = {
+//name: "Alex",
+ //      age: 18,
+   //    isStudent: true,
+//friends:["Nick", "John"],
+//greeting: function(){
+//console.log("I am a funtion!")
+   //    },
+//setPropValue: function(propName, value){
+//this[propName]=value;
+  //     }
+ //  };
+//    student.setPropValue('name','Ron')
+//    console.log(student);
+
+//    student.gender = 'male';
+//    let newProp = 'isMarried';
+//    student[newProp] = false;
+// console.log (student);
+
+//const first = {a: 2, b: 'yo!'}
+//const second = first;
+//second.a = 3;
+//console.log(first);
+
+//const copyFirst = {...first};
+//copyFirst.a = 10;
+//console.log(first);
+//console.log(copyFirst);
+
+
+//const copyStudent = {...student};
+//const copyStudent = {...student, friends: [...student.friends]};
+//copyStudent.setPropValue("name", "Tony");
+//copyStudent.friends.push("Helga");
+//console.log(copyStudent);
+//console.log(student);
+
+//const strangeObj = {...student, ...first};
+//console.log(strangeObj);
+
+
+//const name = student.name;
+//console.log(name);
+//const age = student.age;
+//console.log(age);
+
+//const {name, age} = student;
+//console.log(name, age);
+
+// const human = {
+//     name: "Alex",
+//     age: 18,
+//     isStudent: true,
+//     greeting: function () {
+//         return `My name is ${human.name}.`;
+//     },
+//        fullGreetng: function() {
+//            return `Hi! My name is ${human.name}. I am ${human.age}.`;
+//     }
+// };
+    //  console.log(human);
+
+    //  function humanCreator(n, a, isStdnt) {
+    //      return {
+    //          name: n,
+    //          age: a,
+    //          isStudent: isStdnt,
+    //          greeting: function (){
+    //              return `My name is ${this.name}.`;
+    //          },
+    //          fullGreeting: function () {
+    //              return `Hi! My name is ${this.name}. I am ${this.age}.`;
+    //          }
+    //      }
+    //  }
+    //  const john = humanCreator('John', 23, false);
+    //  console.log(john.greeting());
+
+
+
+ function Human (n, a, isStdnt) {
+     this.name = n,
+     this.age = a,
+     this.isStudent = isStdnt,
+     this.greeting = function () {
+         return `My name is ${this.name}.`;
+     },
+     this.fullGreeting = function (){
+         return `Hi! Me name is ${this.name}. I am ${this.age}.`;
+     }
+ };
+ const ivan = new Human ('Ivan', 21, true);
+console.log(ivan);
+// <Human name="Ivan" age={21} isStdn={true}/>
+Human.prototype.greeting = function () {
+    return `My name is ${this.name}.`;
+};
+Human.prototype.fullGreeting = function () {
+    return `My name is ${this.name}. I am ${this.age}.`;
+};
+// console.dir(ivan.toString());
+// console.log (ivan.fullGreeting());
+console.dir(ivan.hasOwnProperty("greeting"));
+console.dir(Object.keys(ivan));
+
+                                                //вложили в объект viktor свойство и зачение any:true
+let viktor = Object.create(ivan, {any:{value:true}});
+// console.log(viktor);
+console.log(ivan);
+
+
+
+class HumanClass {
+    constructor(n, a, isStdnt) {
+    this.name = n,
+     this.age = a,
+     this.isStudent = isStdnt
+    };
+    greeting = () => {
+        return `My name is ${this.name}.`;
+    };
+    fullGreeting = () => {
+        let isStdnt = this.age > 18 ? 'student' : 'not student';
+        return `Hi! My name is ${this.name}. i am ${isStdnt}.`;
+    }
+};
+const helga = new HumanClass ("Helga", 20, true);
+console.log(helga);
+
+
+class Person extends HumanClass {
+    constructor(n, a, isStdnt, gender){
+        //super это родительский класс котрый надо создать что ы дчерний personмог пользоваться его методами
+        //super это запуск функции конструктора родительского класса
+        super();
+        this.isStdnt = isStdnt;
+        this.age = a;
+        this.name = n;
+        this. gender = gender;
+    }
+    sayBye = () => {
+        return `Bye!!!`
+    }
+};
+
+const nick = new Person ('Nick', 23, true, 'male');
+console.log(nick.sayBye());
+console.log(nick.greeting());
+
+
+</script>
